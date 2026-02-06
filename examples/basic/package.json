@@ -9,17 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/react": "^18.2",
-    "@types/react-dom": "^18.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "eslint": "8.29.0",
-    "next": "15.1.11",
-    "react": "^18.2",
-    "react-dom": "^18.2",
+    "next": "~15.5.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "typescript": "4.9.3"
   },
   "devDependencies": {
     "@types/node": "^17.0.45",
-    "eslint-config-next": "15.1.11",
+    "eslint-config-next": "~15.5.0",
     "eslint-config-ts": "workspace:^0.0.0",
     "@cxnpl/next-app-middleware": "workspace:0.0.0"
   }
