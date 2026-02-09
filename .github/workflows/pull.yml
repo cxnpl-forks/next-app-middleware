@@ -20,7 +20,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
           check-latest: true
           cache: pnpm
       - name: Install all packages
@@ -36,7 +36,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
           check-latest: true
           cache: pnpm
       - name: Install all packages
@@ -54,7 +54,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
           check-latest: true
           cache: pnpm
       - name: Install all packages
@@ -72,7 +72,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
           check-latest: true
           cache: pnpm
       - name: Install all packages

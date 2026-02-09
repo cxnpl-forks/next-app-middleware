@@ -24,7 +24,7 @@ export const withMiddleware =
       } else {
         return {
           ...oldRewrites,
-          afterFiles: [...(await result), ...oldRewrites.afterFiles],
+          afterFiles: [...(await result), ...(oldRewrites.afterFiles ?? [])],
         };
       }
     };

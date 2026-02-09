@@ -1,4 +1,9 @@
 module.exports = {
   root: true,
-  extends: ["ts", "next"],
+  extends: ["ts"],
+  settings: {
+    next: {
+      rootDir: __dirname,
+    },
+  },
 };

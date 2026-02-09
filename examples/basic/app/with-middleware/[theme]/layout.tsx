@@ -1,14 +1,13 @@
 import "../../globals.css";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-  params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
 }) {
+  // Dynamic route segment is [theme], removed this to avoid type errors in next 15
   return (
-    <html lang={locale}>
+    <html lang="en">
       {/*
         <head /> will contain the components returned by the nearest parent
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
