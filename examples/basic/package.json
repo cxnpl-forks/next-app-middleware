@@ -18,7 +18,7 @@
     "typescript": "4.9.3"
   },
   "devDependencies": {
-    "@types/node": "^17.0.45",
+    "@types/node": "~22.19.0",
     "eslint-config-next": "~15.5.0",
     "eslint-config-ts": "workspace:^0.0.0",
     "@cxnpl/next-app-middleware": "workspace:0.0.0"
