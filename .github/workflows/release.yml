@@ -22,7 +22,7 @@ jobs:
         uses: whopio/turbo-module@v0.0.7
         with: 
           action: check
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
         if: steps.check.outputs.can-publish == 'true'
       - uses: pnpm/action-setup@v3
@@ -49,12 +49,12 @@ jobs:
         uses: whopio/turbo-module@v0.0.7
         with: 
           action: release
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           version: ${{ steps.check.outputs.version }}
         if: steps.check.outputs.can-publish == 'true'
       - name: Sync auto-release PRs
         uses: whopio/turbo-module@v0.0.7
         with: 
           action: sync
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           published: ${{ steps.release.outputs.published }}
