@@ -369,3 +369,71 @@ export const error: ErrorHook = (req, res, err) => {
   return new NextResponse(null, { status: 500 });
 };
 ```
+
+## Publishing a new version to npm manually
+
+Instructions on how to push a new version of the package manually.
+
+At time of writing, you can ignore the failing release workflow (`.github/workflows/release.yml`) that is intended to publish on every push to `main` with a bumped root `package.json` version.
+
+
+### Prerequisites
+
+- An npm account that is listed as a collaborator on all three packages. Verify with:
+```bash
+  npm access list collaborators @cxnpl/next-app-middleware
+  npm access list collaborators @cxnpl/next-app-middleware-runtime
+  npm access list collaborators @cxnpl/next-app-middleware-codegen
+```
+- `pnpm` installed and matching the `packageManager` field in the root `package.json` (use `corepack enable` to get the pinned version).
+- The PR with your changes is merged to `main`, including the root `package.json` version bump.
+
+### Steps
+
+1. Sync `main` and install dependencies:
+
+   ```bash
+   git checkout main && git pull
+   pnpm install
+   ```
+
+2. Set the sub-package versions to match the root `package.json` version. The source files intentionally stay at `"version": "0.0.0"` between releases — the official tooling rewrites them at publish time, but for a manual publish you do it yourself. Edit the `version` field in each of:
+
+   - `packages/next-app-middleware/package.json`
+   - `packages/runtime/package.json`
+   - `packages/codegen/package.json`
+
+   Do **not** commit these edits — they exist only for the publish.
+
+2. Build all packages, bypassing the turbo cache:
+
+   ```bash
+   pnpm build --force
+   ```
+
+4. Authenticate with npm using the collaborator account:
+
+   ```bash
+   npm login
+   npm whoami   # sanity check: prints the collaborator username
+   ```
+
+5. Publish all three packages in topological order. `pnpm -r publish` walks the workspace graph and substitutes `workspace:0.0.0` references with the real versions:
+
+   ```bash
+   pnpm -r publish --access public --no-git-checks
+   ```
+
+6. Verify each package is live at the new version:
+
+   ```bash
+   npm view @cxnpl/next-app-middleware version
+   npm view @cxnpl/next-app-middleware-runtime version
+   npm view @cxnpl/next-app-middleware-codegen version
+   ```
+
+7. Discard the local version bumps so source stays at `0.0.0`:
+
+   ```bash
+   git checkout -- packages/*/package.json
+   ```
