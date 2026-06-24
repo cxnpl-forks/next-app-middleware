@@ -6,7 +6,7 @@ export const withMiddleware =
   (
     next:
       | NextConfig
-      | ((phase: string, args: { defaultConfig: NextConfig }) => NextConfig)
+      | ((phase: string, args: { defaultConfig: NextConfig }) => NextConfig),
   ) =>
   async (phase: string, args: { defaultConfig: NextConfig }) => {
     let result: ReturnType<typeof prod>;

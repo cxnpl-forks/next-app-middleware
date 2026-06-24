@@ -7,7 +7,7 @@ const renderRewrite = ({ location, fallback, internalPath }: EjectedRewrite) =>
 const rewrite_response = await ${renderHandler(
     "rewrite",
     location,
-    internalPath
+    internalPath,
   )};
 ${renderSwitchStatement({
   statement: "typeof rewrite_response",

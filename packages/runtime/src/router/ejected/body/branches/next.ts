@@ -14,15 +14,15 @@ next = (final_params) =>
     .replace(/\/(\*[^/]*)\/$/gm, (match, value) => {
       return match.replace(
         value,
-        `\${(final_params.${value.slice(1)} as string[]).join("/")}`
+        `\${(final_params.${value.slice(1)} as string[]).join("/")}`,
       );
     })}\`
 `
     : internalPath !== "//" && internalPath !== externalPath
-    ? `
+      ? `
 next = "${internalPath}";
 `
-    : `
+      : `
 next = true;
 `
   ).trim();

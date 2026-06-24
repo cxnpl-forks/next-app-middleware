@@ -25,15 +25,15 @@ const renderPathSwitch = ({
     }),
     default: `{
       ${renderBranch(defaultCase)}${
-      catchAll
-        ? `
+        catchAll
+          ? `
         if (notFound) {
           notFound = false;
           ${renderBranch(catchAll)}
         }
       `
-        : ""
-    }break;
+          : ""
+      }break;
     }`,
   });
 };

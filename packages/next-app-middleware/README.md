@@ -347,7 +347,7 @@ export const response: ResponseHook = (finalResponse) => {
 };
 ```
 
-or 
+or
 
 ```ts
 export const response: ResponseHook = (finalResponse) => {

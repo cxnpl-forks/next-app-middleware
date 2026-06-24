@@ -14,7 +14,7 @@ const forward_response: boolean | void = await ${renderHandler(
     "forward_static",
     location,
     internalPath,
-    name
+    name,
   )};
 ${renderSwitchStatement({
   statement: "forward_response",

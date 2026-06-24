@@ -10,6 +10,18 @@ const { stat } = fse;
 const collectPublicFiles = async () => {
   console.log("collecting public files");
   const publicFiles = (await glob("public/**/*")).map((path) => path.slice(6));
+  // Association files live under .well-known/, which glob skips by default.
+  for (const wellKnownFile of [
+    "/.well-known/assetlinks.json",
+    "/.well-known/apple-app-site-association",
+  ]) {
+    try {
+      if ((await stat(`public${wellKnownFile}`)).isFile())
+        publicFiles.push(wellKnownFile);
+    } catch {
+      /*empty*/
+    }
+  }
   try {
     if ((await stat("app/favicon.ico")).isFile())
       publicFiles.push("/favicon.ico");

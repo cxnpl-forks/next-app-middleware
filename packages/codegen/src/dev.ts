@@ -11,7 +11,7 @@ const buildWithCatch = async (token?: CancelToken) => {
       logger.event(
         `generated middleware in ${
           Date.now() - start
-        }ms. watching for changes...`
+        }ms. watching for changes...`,
       );
     return rewrites || [];
   } catch (e) {
@@ -52,7 +52,7 @@ const dev = async () => {
   watchAll(watchConfig, runBuild);
   watchAll({ "add unlink change": ["app/**/external.{ts,js}"] }, () => {
     logger.warn(
-      "detected change in external config... restart may be required to apply changes"
+      "detected change in external config... restart may be required to apply changes",
     );
   });
   return rewrites;

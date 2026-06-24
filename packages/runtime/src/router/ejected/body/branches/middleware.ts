@@ -11,7 +11,7 @@ const renderMiddleware = ({
 middleware_response = await ${renderHandler(
     "middleware",
     location,
-    internalPath
+    internalPath,
   )};
 ${renderSwitchStatement({
   statement: "middleware_response",

@@ -11,7 +11,7 @@ const renderRedirect = ({
 const redirect_response = await ${renderHandler(
     "redirect",
     location,
-    internalPath
+    internalPath,
   )};
 ${renderSwitchStatement({
   statement: "typeof redirect_response",

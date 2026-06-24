@@ -1,7 +1,7 @@
 export type LayoutType<T> = [
   T,
   LayoutType<T> | 1 | undefined,
-  LayoutType<T> | 1 | undefined
+  LayoutType<T> | 1 | undefined,
 ];
 
 export type Forwards = {
@@ -53,12 +53,12 @@ export type RouteConfig =
 export type MergedRoute = [
   current: SegmentLayout,
   next?: MergedRoute | SegmentLayout,
-  forward?: readonly [ForwarderConfig, MergedRoute]
+  forward?: readonly [ForwarderConfig, MergedRoute],
 ];
 
 export type FlattenedRoute = [
   currentSegment: SegmentLayout,
   type: RouteConfig,
   next?: FlattenedRoute | SegmentLayout,
-  forward?: FlattenedRoute | SegmentLayout
+  forward?: FlattenedRoute | SegmentLayout,
 ];
