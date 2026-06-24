@@ -370,9 +370,9 @@ export const error: ErrorHook = (req, res, err) => {
 };
 ```
 
-## Publishing a new version to npm manually
+## Publishing a new version to npm locally
 
-Instructions on how to push a new version of the package manually.
+Instructions on how to push a new version of the package on your local machine.
 
 At time of writing, you can ignore the failing release workflow (`.github/workflows/release.yml`) that is intended to publish on every push to `main` with a bumped root `package.json` version.
 
@@ -405,35 +405,48 @@ At time of writing, you can ignore the failing release workflow (`.github/workfl
 
    Do **not** commit these edits — they exist only for the publish.
 
-2. Build all packages, bypassing the turbo cache:
+3. Update every `workspace:0.0.0` cross-reference between the published packages to `workspace:<new version>`. `pnpm publish` rewrites `workspace:X.Y.Z` to the **literal** `X.Y.Z` — it does **not** read the workspace package's current version — so if you skip this step the published dependencies will point at `0.0.0` and consumers' `npm install` will fail with `ETARGET No matching version found`.
+
+   The references to update (leave the `tsconfig` ones alone — that package is private):
+
+   - `packages/codegen/package.json` → `"@cxnpl/next-app-middleware-runtime": "workspace:<new version>"`
+   - `packages/next-app-middleware/package.json` → `"@cxnpl/next-app-middleware-codegen": "workspace:<new version>"`
+   - `packages/next-app-middleware/package.json` → `"@cxnpl/next-app-middleware-runtime": "workspace:<new version>"`
+   - `examples/basic/package.json` → `"@cxnpl/next-app-middleware": "workspace:<new version>"`
+   - `examples/basic-js/package.json` → `"@cxnpl/next-app-middleware": "workspace:<new version>"`
+
+   These edits are also local-only — revert in step 8.
+
+4. Build all packages, bypassing the turbo cache:
 
    ```bash
    pnpm build --force
    ```
 
-4. Authenticate with npm using the collaborator account:
+5. Authenticate with npm using the collaborator account:
 
    ```bash
    npm login
    npm whoami   # sanity check: prints the collaborator username
    ```
 
-5. Publish all three packages in topological order. `pnpm -r publish` walks the workspace graph and substitutes `workspace:0.0.0` references with the real versions:
+6. Publish all three packages in topological order. `pnpm -r publish` walks the workspace graph and substitutes the `workspace:` references with the real versions:
 
    ```bash
    pnpm -r publish --access public --no-git-checks
    ```
 
-6. Verify each package is live at the new version:
+7. Verify each package is live at the new version, and that the dependencies of `@cxnpl/next-app-middleware` resolve correctly:
 
    ```bash
    npm view @cxnpl/next-app-middleware version
    npm view @cxnpl/next-app-middleware-runtime version
    npm view @cxnpl/next-app-middleware-codegen version
+   npm view @cxnpl/next-app-middleware dependencies   # should NOT be 0.0.0
    ```
 
-7. Discard the local version bumps so source stays at `0.0.0`:
+8. Discard the local version bumps so source stays at `0.0.0`:
 
    ```bash
-   git checkout -- packages/*/package.json
+   git checkout -- packages/*/package.json examples/*/package.json
    ```
