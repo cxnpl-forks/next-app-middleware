@@ -57,7 +57,7 @@ export type GenericHook<ExtraArgs extends unknown[] = []> = (
 ) => OptionalPromise<NextResponse | void>;
 
 export type ParamsHook = (
-  params: ParamType
+  params: ParamType,
 ) => OptionalPromise<ParamType | void>;
 
 export type RewriteHook = GenericHook<[destination: string]>;
@@ -78,7 +78,7 @@ export type MiddleWareHandlerResult =
 
 type BaseHandler<Param extends DefaultParam, R> = (
   req: NextMiddlewareRequest<Param>,
-  res: NextMiddlewareResponse
+  res: NextMiddlewareResponse,
 ) => OptionalPromise<R>;
 
 export type MiddlewareHandler<Param extends DefaultParam = DefaultParam> =

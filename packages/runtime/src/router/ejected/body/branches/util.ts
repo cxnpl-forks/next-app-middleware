@@ -4,7 +4,7 @@ export const renderHandler = (
   type: string,
   location: string,
   internalPath: string,
-  imports = "default"
+  imports = "default",
 ) =>
   `
 ${type}_${getSegmentHash(location)}.then(({

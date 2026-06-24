@@ -14,7 +14,7 @@ const forward_response: string | void = await ${renderHandler(
     "forward_dynamic",
     location,
     internalPath,
-    name
+    name,
   )};
 ${renderSwitchStatement({
   statement: "forward_response",

@@ -13,10 +13,10 @@ export default function Home() {
       const match = JSON.stringify(
         new URLPattern(pattern, window.location.origin).exec(
           test,
-          window.location.origin
+          window.location.origin,
         )?.pathname,
         null,
-        2
+        2,
       );
       if (match !== result) setResult(match);
     } catch {
@@ -34,9 +34,7 @@ export default function Home() {
           type="text"
           onChange={({ target: { value } }) => setTest(value)}
         />
-        {result?.split("\n").map((item, key) => (
-          <span key={key}>{item}</span>
-        ))}
+        {result?.split("\n").map((item, key) => <span key={key}>{item}</span>)}
         <Link href="/userid">click</Link>
       </main>
     </div>

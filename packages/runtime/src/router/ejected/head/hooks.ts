@@ -11,7 +11,7 @@ const renderHooksImport = (hooks: RouterHooksConfig) => {
       .map((hook) =>
         `
     ${hook} as ${hook}Hook
-    `.trim()
+    `.trim(),
       )
       .join(",\n")}
   } from "./middleware.hooks";

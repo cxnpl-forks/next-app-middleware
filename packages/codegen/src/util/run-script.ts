@@ -11,7 +11,7 @@ type WrappedModule<T = unknown> = (
   req: typeof require,
   module: unknown,
   __filename: string,
-  __dirnaname: string
+  __dirnaname: string,
 ) => T;
 
 const executeScript = <T = unknown>(src: string, location: string): T => {

@@ -18,11 +18,11 @@ ${(Object.keys(imports) as (keyof Imports)[])
       .map((location) =>
         `
     const ${type.replace(".", "_")}_${getSegmentHash(
-          location
-        )} = import("./${location}/${type}");
-  `.trim()
+      location,
+    )} = import("./${location}/${type}");
+  `.trim(),
       )
-      .join("\n")
+      .join("\n"),
   )
   .filter(Boolean)
   .join("\n")}
