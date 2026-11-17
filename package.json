@@ -10,7 +10,7 @@
     "test": "turbo run test"
   },
   "devDependencies": {
-    "eslint": "^8.34.0",
+    "eslint": "^9.39.5",
     "eslint-config-ts": "workspace:^0.0.0",
     "prettier": "latest",
     "turbo": "^1.7.4"
@@ -19,7 +19,7 @@
     "node": ">=22.20.0"
   },
   "resolutions": {
-    "eslint-config-next": "~15.5.0"
+    "eslint-config-next": "~16.4.6"
   },
   "packageManager": "pnpm@9.3.0+sha256.e1f9e8d1a16607a46dd3c158b5f7a7dc7945501d1c6222d454d63d033d1d918f"
 }
