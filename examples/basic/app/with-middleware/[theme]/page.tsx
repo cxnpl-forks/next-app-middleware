@@ -21,7 +21,6 @@ export default function Home() {
       //eslint-disable-next-line react-hooks/set-state-in-effect -- We don't exactly care that much about the example's performance
       if (match !== result) setResult(match);
     } catch {
-      //eslint-disable-next-line react-hooks/set-state-in-effect -- We don't exactly care that much about the example's performance
       if ("invalid pattern" !== result) setResult("invalid pattern");
     }
   }, [pattern, test, result]);

@@ -29,6 +29,7 @@ export const withMiddleware =
       }
     };
 
+    //eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {rewrites:_oldRewrites, ...rest} = cfg;
     const updatedCfg = {
       ...rest,
