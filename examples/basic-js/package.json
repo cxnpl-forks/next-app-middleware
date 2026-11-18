@@ -6,19 +6,19 @@
     "dev": "next dev --port 3004",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "eslint": "9.39.5",
-    "eslint-config-next": "~16.4.6",
     "next": "~16.4.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@types/node": "~22.19.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "~16.4.6",
     "eslint-config-js": "workspace:^0.0.0",
     "@cxnpl/next-app-middleware": "workspace:0.0.0",
-    "typescript": "^4.9.5"
+    "typescript": "^5.9.3"
   }
 }
