@@ -6,5 +6,5 @@ export default [
   ...nextVitals,
   ...nextTs,
   ...ts,
-  { ignores: [".next/**", "next-env.d.ts"] },
+  { ignores: [".next/**", "next-env.d.ts", "middleware.ts"] },
 ];
