@@ -1,6 +1,8 @@
 /**
  * @type {import("@cxnpl/next-app-middleware/runtime").RewriteHandler<{ locale: string }>}
  */
-export default ({ params: { locale } }) => {
+const rewrite = ({ params: { locale } }) => {
   return `/${locale}`;
 };
+
+export default rewrite; 

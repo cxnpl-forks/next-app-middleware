@@ -17,7 +17,7 @@ export const withMiddleware =
     }
     const cfg = typeof next === "function" ? next(phase, args) : next;
     const oldRewriteGetter = cfg.rewrites;
-    cfg.rewrites = async () => {
+    const rewrites = async () => {
       const oldRewrites = oldRewriteGetter ? await oldRewriteGetter() : [];
       if (oldRewrites instanceof Array) {
         return [...(await result), ...oldRewrites];
@@ -28,7 +28,15 @@ export const withMiddleware =
         };
       }
     };
-    return cfg;
+
+    //eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const {rewrites:_oldRewrites, ...rest} = cfg;
+    const updatedCfg = {
+      ...rest,
+      rewrites
+    }
+    
+    return updatedCfg;
   };
 
 export default withMiddleware;

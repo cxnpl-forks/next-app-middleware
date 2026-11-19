@@ -18,6 +18,7 @@ export default function Home() {
         null,
         2,
       );
+      //eslint-disable-next-line react-hooks/set-state-in-effect -- We don't exactly care that much about the example's performance
       if (match !== result) setResult(match);
     } catch {
       if ("invalid pattern" !== result) setResult("invalid pattern");
